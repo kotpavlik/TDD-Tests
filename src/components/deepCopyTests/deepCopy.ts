@@ -60,5 +60,5 @@ export function replaceLastName(countries: countriesType, newName: string, oldNa
 }
 export const  refactorCompanyName = (countries:countriesType,id:number,newTitle:string) => (
     {
-...countries,companies:[...countries.companies.map(el => el.id === id ? {...el,title:newTitle}: el)]
+...countries,companies:countries.companies.map(el => el.id === id ? {...el,title:newTitle}: el)
 })
