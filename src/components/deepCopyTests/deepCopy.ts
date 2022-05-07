@@ -19,22 +19,20 @@ export type countriesType = {
     lakes: {
         lakesName: string
         lakesSquare: number
-
-    }
+    },
+    companies:Array<companyType>
 }
+type companyType = {id:number,title:string}
 
 export function renameStreetName(countries: countriesType, streetName: string) {
     return {...countries, city: {...countries.city, streetName: streetName}}
 }
-
 export function removeFirstName(countries: countriesType, names: Array<string>) {
     return {...countries, city: {...countries.city, peoples: {...countries.city.peoples, firstName: names}}}
 }
-
 export function getShallowCopy(countries: countriesType) {
     return {...countries}
 }
-
 export function addMoreFirstName(countries: countriesType, newName: Array<string>) {
     return {
         ...countries,
@@ -48,7 +46,6 @@ export function addMoreFirstName(countries: countriesType, newName: Array<string
         }
     }
 }
-
 export function replaceLastName(countries: countriesType, newName: string, oldName: string) {
     let replaceLastNameArr = {...countries,
         city: {
@@ -61,3 +58,7 @@ export function replaceLastName(countries: countriesType, newName: string, oldNa
         }}}
     return replaceLastNameArr
 }
+export const  refactorCompanyName = (countries:countriesType,id:number,newTitle:string) => (
+    {
+...countries,companies:[...countries.companies.map(el => el.id === id ? {...el,title:newTitle}: el)]
+})
